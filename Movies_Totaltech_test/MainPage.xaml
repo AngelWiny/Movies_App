@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Movies_Totaltech_test.MainPage">
+
+    <ScrollView>
+        <StackLayout Orientation="Horizontal" BackgroundColor="#293646">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <StackLayout Grid.Row="0" Grid.Column="0" BackgroundColor="#5FA3D2">
+                    <Label Text="Hello,wath do you want to watch?" TextColor="White" FontSize="40" HorizontalTextAlignment="Center"></Label>
+                    <SearchBar Placeholder="Search" BackgroundColor="#91BFE0"></SearchBar>
+                </StackLayout>
+                <Label Text="Top Rate" FontSize="Title" TextColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="Start" Grid.Row="1" Grid.Column="0"></Label>
+
+                <ListView x:Name="lstTopRaited" ItemsSource="{Binding TopRatedMovies.results}"
+                          HasUnevenRows="True"
+                          BackgroundColor="#293646"
+                          Grid.Row="2"
+                          Grid.Column="0"
+                          SelectedItem="{Binding SelectedMovie,Mode=TwoWay}"
+                          ItemSelected="lstTopRaited_ItemSelected"
+                      Margin="10,0">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout>
+                                    <Image Source="{Binding poster_path,Converter={StaticResource ImagePathConverter},Mode=TwoWay}"
+                                       HeightRequest="300"
+                                       WidthRequest="200"
+                                       ></Image>
+
+                                    <Label Text="{Binding original_title}" HorizontalTextAlignment="Center" TextColor="White"/>
+
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.FooterTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <Label Text="No se encontraron resultados">
+                                    <Label.Triggers>
+                                        <DataTrigger  Binding="{Binding Source={x:Reference lstTopRaited}, Path=ItemsSource.Lenght}"
+                                                TargetType="Label"
+                                                Value="0">
+                                            <Setter Property="IsVisible" Value="true" />
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
+                            </StackLayout>
+                        </DataTemplate>
+                    </ListView.FooterTemplate>
+                </ListView>
+
+                <Label Text="Upcoming" FontSize="Title" TextColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="Start" Grid.Row="3" Grid.Column="0"></Label>
+
+                <ListView x:Name="lstupcoming" ItemsSource="{Binding UpcommingMovies.results}"
+                          HasUnevenRows="True"
+                          BackgroundColor="#293646"
+                          Grid.Row="4"
+                          Grid.Column="0"
+                          SelectedItem="{Binding SelectedMovie}"
+                      Margin="10,0">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout>
+                                    <Image Source="{Binding poster_path,Converter={StaticResource ImagePathConverter},Mode=TwoWay}"
+                                       HeightRequest="300"
+                                       WidthRequest="200"
+                                       ></Image>
+
+                                    <Label Text="{Binding original_title}" HorizontalTextAlignment="Center" TextColor="White"/>
+
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.FooterTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <Label Text="No se encontraron resultados">
+                                    <Label.Triggers>
+                                        <DataTrigger  Binding="{Binding Source={x:Reference lstTopRaited}, Path=ItemsSource.Lenght}"
+                                                TargetType="Label"
+                                                Value="0">
+                                            <Setter Property="IsVisible" Value="true" />
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
+                            </StackLayout>
+                        </DataTemplate>
+                    </ListView.FooterTemplate>
+                </ListView>
+
+                <Label Text="Popular" FontSize="Title" TextColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="Start" Grid.Row="5" Grid.Column="0"></Label>
+
+                <ListView x:Name="lstPopular" ItemsSource="{Binding PopularMovies.results}"
+                          HasUnevenRows="True"
+                          BackgroundColor="#293646"
+                          Grid.Row="6"
+                          Grid.Column="0"
+                          SelectedItem="{Binding SelectedMovie}"
+                      Margin="10,0">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout>
+                                    <Image Source="{Binding poster_path,Converter={StaticResource ImagePathConverter},Mode=TwoWay}"
+                                       HeightRequest="300"
+                                       WidthRequest="200"
+                                       ></Image>
+
+                                    <Label Text="{Binding original_title}" HorizontalTextAlignment="Center" TextColor="White"/>
+
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.FooterTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <Label Text="No se encontraron resultados">
+                                    <Label.Triggers>
+                                        <DataTrigger  Binding="{Binding Source={x:Reference lstTopRaited}, Path=ItemsSource.Lenght}"
+                                                TargetType="Label"
+                                                Value="0">
+                                            <Setter Property="IsVisible" Value="true" />
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
+                            </StackLayout>
+                        </DataTemplate>
+                    </ListView.FooterTemplate>
+                </ListView>
+
+            </Grid>
+
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>

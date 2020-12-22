@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Movies_Totaltech_test.MoviePage"
+             BackgroundColor="#293646"
+             >
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Image Source="{Binding Detail.poster_path,Converter={StaticResource ImagePathConverter},Mode=TwoWay}"
+                                       HeightRequest="300"
+                                       WidthRequest="200"
+                                       ></Image>
+                <Label Text="{Binding Detail.original_title}" TextColor="White"></Label>
+                <Editor Text="{Binding Detail.overview}" TextColor="White"></Editor>
+                <ListView ItemsSource="{Binding Credits.cast}" HasUnevenRows="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout>
+                                    <Image Source="{Binding profile_path,Converter={StaticResource ImagePathConverter},Mode=TwoWay}"></Image>
+                                    <Label Text="{Binding name}" TextColor="White"></Label>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Studio" FontSize="Title" TextColor="White"/>
+                    <Label Text="{Binding Detail.production_companies[0].name}" TextColor="White"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Genre" FontSize="Title" TextColor="White"/>
+                    <Label Text="{Binding Detail.genre[0].name}" TextColor="White"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Release" FontSize="Title" TextColor="White"/>
+                    <Label Text="{Binding Detail.release_date,Converter={StaticResource YearConverter}}" TextColor="White"/>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
