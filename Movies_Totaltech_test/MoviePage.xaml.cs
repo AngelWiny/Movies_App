@@ -15,7 +15,7 @@ namespace Movies_Totaltech_test
         public MoviePage()
         {
             InitializeComponent();
-            (App.Current.MainPage as NavigationPage).BarBackgroundColor = Color.Transparent;
+            // (App.Current.MainPage as NavigationPage).BarBackgroundColor = Color.Transparent;
             var vm = DependencyService.Get<MoviesVM>();
             this.BindingContext = vm;
         }
